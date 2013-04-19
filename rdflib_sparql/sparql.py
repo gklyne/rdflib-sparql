@@ -152,6 +152,9 @@ class FrozenBindings(FrozenDict):
         self.ctx = ctx
 
     def __getitem__(self, key):
+        if isinstance(key, str):
+            key = Variable(key)
+
         if not type(key) in (BNode, Variable):
             return key
 
